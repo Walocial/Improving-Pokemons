@@ -13,7 +13,7 @@ a {
 :root,
     :root.default {
         --bg-color: #1F202A;
-        --bg-color-alt: #1C1D27;
+        --bg-color-alt: #14141b;
         --bg-color-darker: #101116;
         --highlight-color: #61CE70;
         --highlight-color-rbg: 97, 206, 112;
@@ -66,11 +66,30 @@ a {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 10px 5px;
+        row-gap: 10px;
+        padding: 10px 5px 50px 5px;
     }
         .generations {
             font-size: 18px;
             padding-inline: 20px;
+        }
+
+        .pokemonList {
+            width: 95%;
+            max-width: 1200px;
+            padding: 0;
+        }
+
+        .pokemon {
+            text-transform: capitalize;
+            background-color: var(--bg-color-darker);
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            font-size: 18px;
+        }
+        .pokemon:nth-child(even) {
+            background-color: var(--bg-color-alt);
         }
 
     footer {
@@ -80,6 +99,8 @@ a {
         position: fixed;
         bottom: 0;
         padding-block: 20px;
+        background-color: var(--bg-color);
+        z-index: 10;
     }
         .tag {
             display: flex;
@@ -136,6 +157,10 @@ a {
 
     /* Main */
         .generations {
+            font-size: 25px;
+        }
+        .pokemon {
+            padding: 15px;
             font-size: 25px;
         }
 }
