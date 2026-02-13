@@ -1,14 +1,11 @@
 const POKEMON_LIST = document.getElementById('pokemonList');
 let allPokemons = []; // Array til at gemme Pokemons uden for API kaldets scope
 
-
-
-
 // Funktion til at render pokemons i DOM
 // Tager et array, og render en liste ud fra items
 function renderPokemons(array) {
     let pokemonList = array;
-
+    POKEMON_LIST.replaceChildren();
     pokemonList.forEach(name => {
         const li = document.createElement('li');
         li.classList.add('pokemon');
@@ -25,7 +22,7 @@ async function fetchPokemons() {
         allPokemons = data.results.map(pokemon => pokemon.name);
 
         renderPokemons(allPokemons);
-        console.info('Viser alle Pokemons')
+        console.info('Viser alle Pokemons');
     } catch (error) {
         console.error('Error fetching Pokemons', error);
     }
@@ -35,11 +32,13 @@ async function fetchGeneration(gen) {
         const response = await fetch(`https://pokeapi.co/api/v2/generation/${gen}`);
         const data = await response.json();
 
-        console.log(data);
+        let genPokemons = data.pokemon_species.map(species => species.name);
+
+        renderPokemons(genPokemons);
+        console.info(`Viser Pokemon fra Generation ${gen}:`);
     } catch (error) {
         console.error(`Error fetching Generation ${gen}:`, error);
     }
 }
 
 fetchPokemons();
-fetchGeneration(1);

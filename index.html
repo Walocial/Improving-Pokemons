@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/getPokemons.js" defer></script>   
+    <script src="scripts/main.js" defer></script>   
 </head>
 <body>
     <header>
@@ -27,16 +28,16 @@
             <select name="generations" id="generations" class="generations">
                 <!-- Kan eventuelt hentes dynamisk gennem endpointet https://pokeapi.co/api/v2/region -->
                 <!-- Dog kræver det 2 forskellige API kald for at sammensætte Generation 1 med dens Region, Kanto -->
-                <option value="all">Show all</option>
-                <option value="gen1">1 - Kanto</option>
-                <option value="gen2">2 - Johto</option>
-                <option value="gen3">3 - Hoenn</option>
-                <option value="gen4">4 - Sinnoh</option>
-                <option value="gen5">5 - Unova</option>
-                <option value="gen6">6 - Kalos</option>
-                <option value="gen7">7 - Alola</option>
-                <option value="gen8">8 - Galar</option>
-                <option value="gen9">9 - Paldea</option>
+                <option value="all">Vis alle</option>
+                <option value="1">1 - Kanto</option>
+                <option value="2">2 - Johto</option>
+                <option value="3">3 - Hoenn</option>
+                <option value="4">4 - Sinnoh</option>
+                <option value="5">5 - Unova</option>
+                <option value="6">6 - Kalos</option>
+                <option value="7">7 - Alola</option>
+                <option value="8">8 - Galar</option>
+                <option value="9">9 - Paldea</option>
             </select>
             <i class="fas fa-list-ul" tabindex="0"></i>
             <i class="fas fa-th-large" tabindex="0"></i>
