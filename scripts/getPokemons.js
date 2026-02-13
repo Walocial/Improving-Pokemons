@@ -6,10 +6,13 @@ let allPokemons = []; // Array til at gemme Pokemons uden for API kaldets scope
 function renderPokemons(array) {
     let pokemonList = array;
     POKEMON_LIST.replaceChildren();
-    pokemonList.forEach(name => {
+    pokemonList.forEach(pokemon => {
         const li = document.createElement('li');
         li.classList.add('pokemon');
-        li.textContent = name;
+        li.textContent = pokemon.name;
+        li.addEventListener('click', () => {
+            console.log(pokemon.url);
+        });
         POKEMON_LIST.appendChild(li);
     });
 }
@@ -19,7 +22,7 @@ async function fetchPokemons() {
         const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0');
         const data = await response.json();
 
-        allPokemons = data.results.map(pokemon => pokemon.name);
+        allPokemons = data.results;
 
         renderPokemons(allPokemons);
         console.info('Viser alle Pokemons');
@@ -32,7 +35,10 @@ async function fetchGeneration(gen) {
         const response = await fetch(`https://pokeapi.co/api/v2/generation/${gen}`);
         const data = await response.json();
 
-        let genPokemons = data.pokemon_species.map(species => species.name);
+        let genPokemons = data.pokemon_species.map(species => ({
+            name: species.name,
+            url: species.url
+        }));
 
         renderPokemons(genPokemons);
         console.info(`Viser Pokemon fra Generation ${gen}:`);
