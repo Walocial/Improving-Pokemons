@@ -26,9 +26,10 @@ const MODAL_TYPES = document.getElementById('pokemonTypes');
 
 function renderModal(object) {
     POKEMON_MODAL.style.display = "flex";
-    MODAL_ID.textContent = toString(object.id);
+    MODAL_ID.textContent = '#' + object.id;
     MODAL_NAME.textContent = object.name;
     MODAL_SPRITE.src = object.image;
+    MODAL_SPRITE.setAttribute('alt', `Billede af ${object.name}`);
 
     MODAL_TYPES.replaceChildren();
     object.types.forEach(type => {
@@ -56,10 +57,19 @@ async function fetchGeneration(gen) {
         const response = await fetch(`https://pokeapi.co/api/v2/generation/${gen}`);
         const data = await response.json();
 
-        let genPokemons = data.pokemon_species.map(species => ({
-            name: species.name,
-            url: species.url
-        }));
+        const genPokemons = await Promise.all(
+            data.pokemon_species.map(async (species) => {
+                const res = await fetch(species.url);
+                const speciesData = await res.json();
+
+                const defaultVariety = speciesData.varieties.find(v => v.is_default);
+
+                return {
+                    name: defaultVariety.pokemon.name,
+                    url: defaultVariety.pokemon.url
+                };
+            })
+        );
 
         renderPokemons(genPokemons);
         console.info(`Viser Pokemon fra Generation ${gen}:`);

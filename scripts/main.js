@@ -19,3 +19,15 @@ GRID_BTN.addEventListener('click', () => {
     LIST_BTN.classList.remove('btn-selected');
     GRID_BTN.classList.add('btn-selected');
 });
+
+const CLOSE_MODAL = document.getElementById('closeModal');
+
+CLOSE_MODAL.addEventListener('click', () => {
+    POKEMON_MODAL.style.display = "none";
+});
+
+window.addEventListener('keydown', (event) => {
+    if (POKEMON_MODAL.style.display == "flex" && event.key === 'Escape') {
+        POKEMON_MODAL.style.display = "none";
+    }
+})

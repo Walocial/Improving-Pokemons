@@ -128,10 +128,6 @@ a {
             border-bottom: 2px solid var(--highlight-color);
         }
 
-        .modal {
-            display: none;
-        }
-
     footer {
         width: 100dvw;
         display: flex;

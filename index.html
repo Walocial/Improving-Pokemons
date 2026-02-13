@@ -9,10 +9,20 @@
     <!-- CSS + JS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/modal.css">
     <script src="scripts/getPokemons.js" defer></script>    
     <script src="scripts/main.js" defer></script>
 </head>
 <body>
+    <aside id="pokemonModal" class="modal">
+        <div class="card">
+            <i class="fas fa-x closeBtn" id="closeModal" title="Luk (Esc)"></i>
+            <img id="pokemonSprite" src="" alt="">
+            <span id="pokemonID"></span>
+            <h2 id="pokemonName"></h2>
+            <ul id="pokemonTypes"></ul>
+        </div>
+    </aside>
     <header>
         <a href="#" class="homeBtn">
             <img src="assets/media/pokeball_icon.svg" alt="Logo af en Pokéball" height="40" width="40" title="Til forsiden">
@@ -24,11 +34,6 @@
         </div>
     </header>
     <main>
-        <div id="pokemonModal" class="modal">
-            <img id="pokemonSprite" src="" alt="">
-            <h2 id="pokemonName"><span id="pokemonID">0</span>Name</h2>
-            <p id="pokemonTypes"></p>
-        </div>
         <nav class="viewNav">
             <select name="generations" id="generations" class="generations">
                 <!-- Kan eventuelt hentes dynamisk gennem endpointet https://pokeapi.co/api/v2/region -->
