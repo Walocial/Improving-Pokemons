@@ -9,7 +9,7 @@
     <!-- CSS + JS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     <link rel="stylesheet" href="styles/main.css">
-    <script src="scripts/getPokemons.js" defer></script>   
+    <script src="scripts/getPokemons.js" defer></script>    
     <script src="scripts/main.js" defer></script>   
 </head>
 <body>
@@ -19,12 +19,12 @@
         </a>
         <h1>Pokemon Oversigt</h1>
         <div class="theme">
-            <i class="fas fa-sun" tabindex="0"></i>
-            <i class="fas fa-moon" tabindex="0"></i>
+            <i class="fas fa-sun" id="lightBtn" tabindex="0"></i>
+            <i class="fas fa-moon" id="darkBtn" tabindex="0"></i>
         </div>
     </header>
     <main>
-        <nav>
+        <nav class="viewNav">
             <select name="generations" id="generations" class="generations">
                 <!-- Kan eventuelt hentes dynamisk gennem endpointet https://pokeapi.co/api/v2/region -->
                 <!-- Dog kræver det 2 forskellige API kald for at sammensætte Generation 1 med dens Region, Kanto -->
@@ -39,11 +39,11 @@
                 <option value="8">8 - Galar</option>
                 <option value="9">9 - Paldea</option>
             </select>
-            <i class="fas fa-list-ul" tabindex="0"></i>
-            <i class="fas fa-th-large" tabindex="0"></i>
+            <i class="fas fa-list-ul viewBtn btn-selected" id="listBtn" tabindex="0"></i>
+            <i class="fas fa-th-large viewBtn" id="gridBtn" tabindex="0"></i>
         </nav>
 
-        <ul class="pokemonList" id="pokemonList">
+        <ul class="pokemonList list-view" id="pokemonList">
             <!-- Dynamisk indhold vises her -->
         </ul>
 
