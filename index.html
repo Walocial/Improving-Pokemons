@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/getPokemons.js" defer></script>    
-    <script src="scripts/main.js" defer></script>   
+    <script src="scripts/main.js" defer></script>
 </head>
 <body>
     <header>
@@ -24,11 +24,16 @@
         </div>
     </header>
     <main>
+        <div id="pokemonModal" class="modal">
+            <img id="pokemonSprite" src="" alt="">
+            <h2 id="pokemonName"><span id="pokemonID">0</span>Name</h2>
+            <p id="pokemonTypes"></p>
+        </div>
         <nav class="viewNav">
             <select name="generations" id="generations" class="generations">
                 <!-- Kan eventuelt hentes dynamisk gennem endpointet https://pokeapi.co/api/v2/region -->
                 <!-- Dog kræver det 2 forskellige API kald for at sammensætte Generation 1 med dens Region, Kanto -->
-                <option value="all">Vis alle</option>
+                <option value="all" selected>Vis alle</option>
                 <option value="1">1 - Kanto</option>
                 <option value="2">2 - Johto</option>
                 <option value="3">3 - Hoenn</option>
@@ -52,6 +57,7 @@
         <div class="tag">
             <p>Lavet af </p>
             <a href="https://github.com/Walocial" target="_blank">Tobias</a>
+            <p>| Elementer tilhører Nintendo & Pokémon</p>
         </div>
     </footer>
 </body>

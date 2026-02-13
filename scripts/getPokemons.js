@@ -12,8 +12,29 @@ function renderPokemons(array) {
         li.textContent = pokemon.name;
         li.addEventListener('click', () => {
             console.log(pokemon.url);
+            fetchSpecificPokemon(pokemon.url);
         });
         POKEMON_LIST.appendChild(li);
+    });
+}
+
+const POKEMON_MODAL = document.getElementById('pokemonModal');
+const MODAL_ID = document.getElementById('pokemonID');
+const MODAL_NAME = document.getElementById('pokemonName');
+const MODAL_SPRITE = document.getElementById('pokemonSprite');
+const MODAL_TYPES = document.getElementById('pokemonTypes');
+
+function renderModal(object) {
+    POKEMON_MODAL.style.display = "flex";
+    MODAL_ID.textContent = toString(object.id);
+    MODAL_NAME.textContent = object.name;
+    MODAL_SPRITE.src = object.image;
+
+    MODAL_TYPES.replaceChildren();
+    object.types.forEach(type => {
+        const li = document.createElement('li');
+        li.textContent = type;
+        MODAL_TYPES.appendChild(li);
     });
 }
 
@@ -44,6 +65,25 @@ async function fetchGeneration(gen) {
         console.info(`Viser Pokemon fra Generation ${gen}:`);
     } catch (error) {
         console.error(`Error fetching Generation ${gen}:`, error);
+    }
+}
+
+async function fetchSpecificPokemon(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+            let pokemonData = {
+                id: data.id,
+                name: data.name,
+                image: data.sprites.front_default,
+                types: data.types.map(t => t.type.name)
+            }
+
+        console.log(pokemonData);
+        renderModal(pokemonData);
+    } catch (error) {
+        console.error('Error fetching requested Pokémon:', error)
     }
 }
 

@@ -128,19 +128,24 @@ a {
             border-bottom: 2px solid var(--highlight-color);
         }
 
+        .modal {
+            display: none;
+        }
+
     footer {
         width: 100dvw;
         display: flex;
         justify-content: center;
         position: fixed;
         bottom: 0;
-        padding-block: 10px;
+        padding-block: 10px 15px;
         background-color: var(--bg-color);
         z-index: 10;
     }
         .tag {
             display: flex;
             column-gap: 4px;
+            font-size: 12px;
         }
             .tag p {
                 opacity: .4;
@@ -174,6 +179,11 @@ a {
         }
         .gridView {
             grid-template-columns: repeat(auto-fill, 20%);
+        }
+
+    /* Footer */
+        .tag {
+            font-size: 18px;
         }
 }
 
