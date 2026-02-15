@@ -50,6 +50,7 @@
     background-color: var(--close-color);
 }
 
+/* Normalt laver jeg CSS fil til alle animationer, men har kun 1 i dette projekt */
 @keyframes spin-3d {
     0% {
         transform: rotateY(0deg) scale(5%);
@@ -57,4 +58,63 @@
     100% {
         transform: rotateY(360deg) scale(100%);
     }
+}
+
+/* Baggrundsfarver for de forskellige typer pokemons angivet i getPokemons.js>renderModal() */
+.card[data-type="bug"] {
+    background-color: #94bc4a;
+}
+.card[data-type="dark"] {
+    background-color: #736c75;
+}
+.card[data-type="dragon"] {
+    background-color: #6a7baf ;
+}
+.card[data-type="electric"] {
+    background-color: #e5c531 ;
+}
+.card[data-type="fairy"] {
+    background-color: #e397d1 ;
+}
+.card[data-type="bug"] {
+    background-color: #78C850;
+}
+.card[data-type="fighting"] {
+    background-color: #cb5f48;
+}
+.card[data-type="fire"] {
+    background-color: #ea7a3c;
+}
+.card[data-type="flying"] {
+    background-color: #7da6de;
+}
+.card[data-type="ghost"] {
+    background-color: #846ab6;
+}
+.card[data-type="grass"] {
+    background-color: #71c558;
+}
+.card[data-type="ground"] {
+    background-color: #cc9f4f;
+}
+.card[data-type="ice"] {
+    background-color: #70cbd4;
+}
+.card[data-type="normal"] {
+    background-color: #aab09f;
+}
+.card[data-type="poison"] {
+    background-color: #b468b7;
+}
+.card[data-type="psychic"] {
+    background-color: #e5709b;
+}
+.card[data-type="rock"] {
+    background-color: #b2a061;
+}
+.card[data-type="steel"] {
+    background-color: #89a1b0;
+}
+.card[data-type="water"] {
+    background-color: #539ae2;
 }

@@ -19,23 +19,37 @@ function renderPokemons(array) {
 }
 
 const POKEMON_MODAL = document.getElementById('pokemonModal');
+const MODAL_CARD = document.getElementById('card');
 const MODAL_ID = document.getElementById('pokemonID');
 const MODAL_NAME = document.getElementById('pokemonName');
 const MODAL_SPRITE = document.getElementById('pokemonSprite');
 const MODAL_TYPES = document.getElementById('pokemonTypes');
+const MODAL_SKILLS = document.getElementById('pokemonSkills');
 
 function renderModal(object) {
+    //Vis modalet
     POKEMON_MODAL.style.display = "flex";
+    
+    //Angiver første pokemontype som dataset på "card", som bruges til at style baggrundsfarven efter type
+    MODAL_CARD.dataset.type = object.types[0];
+
+    //Udfyld modal data
     MODAL_ID.textContent = '#' + object.id;
     MODAL_NAME.textContent = object.name;
     MODAL_SPRITE.src = object.image;
     MODAL_SPRITE.setAttribute('alt', `Billede af ${object.name}`);
 
-    MODAL_TYPES.replaceChildren();
+    MODAL_TYPES.replaceChildren(); //Tømmer UL
     object.types.forEach(type => {
         const li = document.createElement('li');
         li.textContent = type;
         MODAL_TYPES.appendChild(li);
+    });
+    MODAL_SKILLS.replaceChildren(); //Tømmer UL
+    object.skills.forEach(type => {
+        const li = document.createElement('li');
+        li.textContent = type;
+        MODAL_SKILLS.appendChild(li);
     });
 }
 
@@ -87,7 +101,8 @@ async function fetchSpecificPokemon(url) {
                 id: data.id,
                 name: data.name,
                 image: data.sprites.front_default,
-                types: data.types.map(t => t.type.name)
+                types: data.types.map(t => t.type.name),
+                skills: data.abilities.map(ab => ab.ability.name)
             }
 
         console.log(pokemonData);

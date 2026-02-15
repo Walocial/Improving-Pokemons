@@ -20,14 +20,27 @@ GRID_BTN.addEventListener('click', () => {
     GRID_BTN.classList.add('btn-selected');
 });
 
-const CLOSE_MODAL = document.getElementById('closeModal');
+const CLOSE_MODAL_BTN = document.getElementById('closeModalBtn');
 
-CLOSE_MODAL.addEventListener('click', () => {
+function closeModal() {
     POKEMON_MODAL.style.display = "none";
+    MODAL_SPRITE.src = ""; //Unset billede så en tidligere klikket pokemon ikke bliver vist i et split-sekundt
+}
+
+CLOSE_MODAL_BTN.addEventListener('click', () => {
+    closeModal();
 });
 
-window.addEventListener('keydown', (event) => {
+//Eventlistner til at lukke modalet når der klikkes uden for det viste "card"
+//Grundet HTML strukturen er det nødvendigt med sådan et if-statement pga. propagation
+POKEMON_MODAL.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) {
+        closeModal();
+    }
+})
+
+window.addEventListener('keydown', (e) => {
     if (POKEMON_MODAL.style.display == "flex" && event.key === 'Escape') {
-        POKEMON_MODAL.style.display = "none";
+        closeModal();
     }
 })
