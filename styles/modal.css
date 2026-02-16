@@ -21,8 +21,7 @@
         border-radius: 15px;
         text-transform: capitalize;
         color: black;
-        outline: 12px solid var(--link-color);
-        background-color: var(--bg-color);
+        outline: 12px solid gold;
         animation: spin-3d 350ms ease-in-out forwards;
     }
         .spriteWrapper{
@@ -110,7 +109,7 @@
     }
 }
 
-/* Baggrundsfarver for de forskellige typer pokemons angivet i getPokemons.js>renderModal() */
+/* Baggrundsfarver for de forskellige typer pokemons angivet i modal.js>renderModal() */
 .card[data-type="bug"] {
     background-color: #94bc4a;
 }

@@ -16,54 +16,6 @@ function renderPokemons(array) {
     });
 }
 
-const POKEMON_MODAL = document.getElementById('pokemonModal');
-const MODAL_CARD = document.getElementById('card');
-const MODAL_ID = document.getElementById('pokemonID');
-const MODAL_NAME = document.getElementById('pokemonName');
-const MODAL_SPRITE = document.getElementById('pokemonSprite');
-const MODAL_TYPES = document.getElementById('pokemonTypes');
-const MODAL_SKILLS = document.getElementById('pokemonSkills');
-
-function renderModal(object) {
-    //Vis modalet
-    POKEMON_MODAL.style.display = "flex";
-    
-    //Angiver første pokemontype som dataset på "card", som bruges til at style baggrundsfarven efter type
-    MODAL_CARD.dataset.type = object.types[0];
-
-    //Udfyld modal data
-    MODAL_ID.textContent = `#${object.id} | `;
-    MODAL_NAME.textContent = object.name;
-    MODAL_SPRITE.src = object.image;
-    MODAL_SPRITE.setAttribute('alt', `Billede af ${object.name}`);
-
-    MODAL_TYPES.replaceChildren(); //Tømmer UL
-    object.types.forEach(type => {
-        const li = document.createElement('li');
-        li.textContent = type;
-        MODAL_TYPES.appendChild(li);
-    });
-    MODAL_SKILLS.replaceChildren();
-
-    object.skills.forEach(skill => {
-        const li = document.createElement('li');
-        li.classList.add('skill');
-
-        const title = document.createElement('p');
-        title.classList.add('title');
-        title.textContent = skill.name;
-
-        const desc = document.createElement('p');
-        desc.classList.add('desc');
-        desc.textContent = skill.effect;
-
-        li.appendChild(title);
-        li.appendChild(desc);
-
-        MODAL_SKILLS.appendChild(li);
-        });
-}
-
 async function fetchGeneration(gen) {
     try {
         const response = await fetch(`https://pokeapi.co/api/v2/generation/${gen}`);
@@ -87,7 +39,7 @@ async function fetchGeneration(gen) {
         genPokemons.sort((a, b) => a.id - b.id); //Sorterer efter ID, da pokemons ellers forekommer i en underlig rækkefølge
 
         renderPokemons(genPokemons);
-        console.info(`Viser Pokemon fra Generation ${gen}:`);
+        localStorage.setItem('shownGen', gen);
     } catch (error) {
         console.error(`Error fetching Generation ${gen}:`, error);
     }
@@ -124,11 +76,8 @@ async function fetchSpecificPokemon(url) {
                 skills: abilityDetails
             }
 
-        console.log(pokemonData);
         renderModal(pokemonData);
     } catch (error) {
         console.error('Error fetching requested Pokémon:', error)
     }
 }
-
-fetchGeneration(1);

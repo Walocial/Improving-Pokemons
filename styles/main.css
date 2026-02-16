@@ -28,12 +28,12 @@ a {
         --bg-color: #F1F1F6;
         --bg-color-alt: #E5E5E9;
         --bg-color-darker: #ceced1;
-        --highlight-color: #33d048;
+        --highlight-color: dodgerblue;
         --highlight-color-rbg: 51, 208, 72;
         --highlight-color-alt: #38b764;
         --text-color: #000000;
         --text-color-alt-bckg: #ffffff;
-        --link-color: goldenrod;
+        --link-color: rgb(0, 3, 206);
         --close-color: rgb(244, 61, 61);
     }
 
@@ -51,13 +51,22 @@ header {
     display: flex;
     justify-content: space-between;
     position: relative;
+    padding-inline: 5px;
 }
     .theme {
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 20px;
+        cursor: pointer;
     }
+    .theme:hover, .theme:focus {
+        transform: scale(1.05);
+        border-bottom: 2px solid var(--highlight-color);
+    }
+        .fa-moon {
+            display: none;
+        }
     .homeBtn {
         transition: 150ms ease-in-out;
     }
@@ -158,7 +167,12 @@ footer {
 
 /* --------------------- Tablet Version -----------------------*/ 
 @media screen and (width >= 725px) { 
-/* Header */
+header {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    padding-inline: 5px;
+}
     .homeBtn, .homeBtn>img {
         width: 60px;
         height: 60px;
